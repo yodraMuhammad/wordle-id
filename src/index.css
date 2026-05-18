@@ -28,6 +28,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
   overflow: hidden;
   /* Prevent pull-to-refresh on mobile */
@@ -37,6 +38,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh;
   width: 100vw;
   max-width: 500px;
   margin: 0 auto;
@@ -394,4 +396,71 @@ main {
 
 .play-again-btn:hover {
   opacity: 0.9;
+}
+
+/* Responsive Design for smaller screens (iPhone 7 and similar) */
+@media (max-width: 400px) {
+  header {
+    padding: 0.75rem;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  header img {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .grid-container {
+    padding: 5px;
+    gap: 4px;
+    max-width: 300px;
+  }
+
+  .row {
+    gap: 4px;
+  }
+
+  .box {
+    font-size: 1.5rem;
+  }
+
+  .keyboard {
+    padding: 0 4px 4px;
+    gap: 6px;
+  }
+
+  .keyboard-row {
+    gap: 4px;
+  }
+
+  .key {
+    height: 48px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 350px) {
+  header h1 {
+    font-size: 1.25rem;
+  }
+
+  .grid-container {
+    max-width: 260px;
+  }
+
+  .keyboard-row {
+    gap: 3px;
+  }
+
+  .key {
+    height: 44px;
+    font-size: 0.85rem;
+  }
+
+  .box {
+    font-size: 1.25rem;
+  }
 }
