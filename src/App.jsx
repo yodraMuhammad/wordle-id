@@ -4,6 +4,7 @@ import Keyboard from './components/Keyboard';
 import StatsModal from './components/StatsModal';
 import { getRandomWord, WORDLIST } from './constants';
 import { checkGuess, saveGameState, loadGameState, saveStats, loadStats } from './utils';
+import iconUrl from './assets/icon.svg';
 
 const App = () => {
   const [targetWord, setTargetWord] = useState('');
@@ -11,7 +12,7 @@ const App = () => {
   const [currentGuess, setCurrentGuess] = useState('');
   const [statuses, setStatuses] = useState([]);
   const [gameStatus, setGameStatus] = useState('playing'); // 'playing', 'won', 'lost'
-  
+
   const [stats, setStats] = useState({
     gamesPlayed: 0,
     gamesWon: 0,
@@ -49,7 +50,7 @@ const App = () => {
     setGameStatus('playing');
     setIsStatsModalOpen(false);
     setFlippingRowIndex(-1);
-    
+
     saveGameState({
       targetWord: newWord,
       guesses: [],
@@ -139,7 +140,7 @@ const App = () => {
   guesses.forEach((guess, i) => {
     const statusArray = statuses[i];
     if (!statusArray) return;
-    
+
     for (let j = 0; j < 5; j++) {
       const char = guess[j];
       const currentStatus = keyStatuses[char];
@@ -159,7 +160,10 @@ const App = () => {
   return (
     <>
       <header>
-        <h1>Wordle ID</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <img src={iconUrl} alt="Wordle Icon" style={{ width: '32px', height: '32px' }} />
+          <h1>Wordle ID</h1>
+        </div>
         <button className="stats-btn" onClick={() => setIsStatsModalOpen(true)}>
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
             <path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
@@ -174,7 +178,7 @@ const App = () => {
       )}
 
       <main>
-        <Grid 
+        <Grid
           guesses={guesses}
           currentGuess={currentGuess}
           currentGuessIndex={guesses.length}
@@ -184,14 +188,14 @@ const App = () => {
         />
       </main>
 
-      <Keyboard 
+      <Keyboard
         onChar={onChar}
         onDelete={onDelete}
         onEnter={onEnter}
         keyStatuses={keyStatuses}
       />
 
-      <StatsModal 
+      <StatsModal
         isOpen={isStatsModalOpen}
         onClose={() => setIsStatsModalOpen(false)}
         stats={stats}
